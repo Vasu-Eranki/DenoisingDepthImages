@@ -1,6 +1,9 @@
 # Abstract
 
-Provide a brief overview of the project objhectives, approach, and results.
+
+<ins>Objective</ins>
+<ins>Approach</ins>
+<ins>Results</ins>
 
 # Team
 
