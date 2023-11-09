@@ -1,10 +1,7 @@
-# ecem202a_project
-This is repository template for UCLA ECEM202A / CSM213A projects.
+# ECE M202A/CS M213A Project Fall 2023 (UCLA)
+# Denosing Depth Images using RGB
 
-Use the folders as follows:
+Please navigate through the repository as follows:
 
-* doc/ for website content
-* software/ for code used in your project
-* data/ for data data used in your project
-
-You may add additional folders as necessary.
+* Software developed would be hosted in the /software directory
+* Data used for this project would be hosted in the /data directory
