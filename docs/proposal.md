@@ -81,11 +81,15 @@ Dong, G., Zhang, Y. and Xiong, Z., 2020. Spatial hierarchy aware residual pyrami
 
 <a id = "6">[6]</a>
 Novkovic, T., Furrer, F., Panjek, M., Grinvald, M., Siegwart, R. and Nieto, J., 2019. CLUBS: An RGB-D dataset with cluttered box scenes containing household objects. The International Journal of Robotics Research, 38(14), pp.1538-1548.URL: https://clubs.github.io/  
+
 <a id = "7">[7]</a>
 Silberman, N., Hoiem, D., Kohli, P. and Fergus, R., 2012. Indoor segmentation and support inference from rgbd images. In Computer Vision–ECCV 2012: 12th European Conference on Computer Vision, Florence, Italy, October 7-13, 2012, Proceedings, Part V 12 (pp. 746-760). Springer Berlin Heidelberg. URL: https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html  
+
 <a id = "8">[8]</a>
 Vasiljevic, I., Kolkin, N., Zhang, S., Luo, R., Wang, H., Dai, F.Z., Daniele, A.F., Mostajabi, M., Basart, S., Walter, M.R. and Shakhnarovich, G., 2019. Diode: A dense indoor and outdoor depth dataset. arXiv preprint arXiv:1908.00463.URL:https://diode-dataset.org/  
+
 <a id = "9">[9]</a>
 URL: https://www.intelrealsense.com/sdk-2/  
+
 <a id="10">[10]</a>
 URL:https://dev.intelrealsense.com/docs/lidar-camera-l515-datasheet
