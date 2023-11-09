@@ -35,8 +35,9 @@ Describe the key tasks in executing your project, and in case of team project de
 ## 9. Related Work
 
 ### 9.a. Papers
+In denosing depth images, there are two ways to achieve this. The first is via supervised training which requires pairs of clean-noisy depth images. The second school of though involves self-supversied training which leverages internal representations inside the data to clean them. For this project the goal is to focus more on the self-supervised training and the following papers were helpful. 
 
-List the key papers that you have identified relating to your project idea, and describe how they related to your project. Provide references (with full citation in the References section below).
+
 
 ### 9.b. Datasets
 
