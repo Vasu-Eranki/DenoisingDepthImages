@@ -2,7 +2,7 @@
 
 ## 1. Motivation & Objective
 
-What are you trying to do and why? (plain English without jargon)
+The goal of this project is to leverage the information present in the RGB image to denoise the depth part of it. 
 
 ## 2. State of the Art & Its Limitations
 
