@@ -1,9 +1,9 @@
 # Abstract
 
 
-<ins>Objective</ins>
-<ins>Approach</ins>
-<ins>Results</ins>
+<ins>Objective</ins>  
+<ins>Approach</ins>  
+<ins>Results</ins>  
 
 # Team
 
