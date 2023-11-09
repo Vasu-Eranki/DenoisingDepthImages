@@ -63,7 +63,7 @@ For this project, the following software will be used:
 - TensorFlow & Keras 
 - Intel RealSense SDK for Windows [[9]](#9)
 
-### 9.c(a) Hardware
+### 9.c.a Hardware
 For this project, the following hardware will be used:
 - IntelRealSense L515 [[10]](#10)
 
