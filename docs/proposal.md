@@ -41,6 +41,8 @@ For this project, the following skills are resources are needed for the project 
 - CUDA and CuDNN compatible GPU's for accelerating training (For speedy training minimum is an Nvidia A100)
     - Minimum 8 GB of RAM to process data locally
     - Hardware requirements are being met by Google Colab
+ 
+- RGB-D Dataset(Listed below)
 ## 7. Metrics of Success
 
 What are metrics by which you would check for success?
