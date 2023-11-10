@@ -2,11 +2,19 @@
 
 ## 1. Motivation & Objective
 
-<p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection, however the depth images procured from consumer level senors have non-negligble amounts of noise present in it, which can interfer the downstream tasks which rely on the depth information to make a decision such as in autonomous driving. The goal of this project is two fold, the first is to leverage the information present in the RGB image to denoise the depth image. The second part of this project is to leverage data driven models like neural networks to denoise the depth image. </p>
+<p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors have non-negligble amounts of noise present in it, which can interfere with the downstream tasks which rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
 
 ## 2. State of the Art & Its Limitations
 
 How is it done today, and what are the limits of current practice?
+<p align="justify">Currently, there are two school of thought on how to tackle this problem, a supervised approach and a self-supervised approach. Because for this project, the goal is to denoise the image without having access to the ground truth, more focus will be on the self-supervised based state of the art model.  </p>  
+
+
+<p align = "justify">
+    There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image, they were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image.
+</p>
+
+<p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end where the first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. </p>   
 
 ## 3. Novelty & Rationale
 
@@ -14,15 +22,17 @@ What is new in your approach and why do you think it will be successful?
 
 ## 4. Potential Impact
 
-If the project is successful, what difference will it make, both technically and broadly?
+<p align="justify"> The goal of this project is to show that monocular depth denoising is possible, which means that the input to the model is a noisy RGB-D image and the output is a clean RGB-D image. The ramifications would be a model that is faster to train, and easier to train since it wouldn't require a larger end-to-end system or multiple sensors capturing the same scene. From an inference perspective, monocular depth denoising would help in real-time denoising since the number of frames that can be processed in a second would be comparatively more than a system which is more complex.  From a broader perspective, this could help in downstream tasks like robotics and autonomous driving which require clean depth images in real-time to make sound decisions. </p>
 
 ## 5. Challenges
 
 What are the challenges and risks?
 
-## 6. Requirements for Success
+<ins>Challenges</ins>
+<ins>Risks</ins>
+<ins> Assumptions </ins>
 
-What skills and resources are necessary to perform the project?
+## 6. Requirements for Success
 
 For this project, the following skills are resources are needed for the project to be successful. 
 
@@ -42,10 +52,18 @@ For this project, the following skills are resources are needed for the project 
     - Minimum 8 GB of RAM to process data locally
     - Hardware requirements are being met by Google Colab
  
-- RGB-D Dataset(Listed below)
+- RGB-D Dataset [Listed Below]("9-b-datasets")
 ## 7. Metrics of Success
 
-What are metrics by which you would check for success?
+The authors in papers [[1]](#1) - [[5]](#5), used the following metrics in their papers to evaluate the performance of their proposed model against other benchmarks. Similarly for this project, the same metrics will be used to evaluate the performance of our proposed model. The most commonly used metrics to evaluate the robustness of the denoising systems are:    
+* RMSE   
+* MAE
+
+A successful project would require that the model successfully denoises a depth image by leveraging the information present in the RGB image and should achieve the following values for each metric:
+
+Metric | Value 
+RMSE | 58mm
+MAE | 25mm 
 
 ## 8. Execution Plan
 
@@ -72,7 +90,7 @@ Paper 3: Depth image denoising using nuclear norm and learning graph model [[3]]
 Paper 4: Spatial Hierarchy Aware Residual Pyramid Network for Time-of-Flight Depth Denoising [[4]](#4)
 
 Paper 5: Unsupervised Depth Completion and Denoising for RGB-D Sensors [[5]](#5)
-### 9.b. Datasets
+### <a id ="9-b-datasets">9.b. Datasets</a>
 The following datasets will be used for the project either wholly or parts of it, to train the deep learning model. 
 
 Dataset Name | Year of Release | Type of Images | Sensor
@@ -123,3 +141,16 @@ URL: https://www.intelrealsense.com/sdk-2/
 
 <a id="10">[10]</a>
 URL:https://dev.intelrealsense.com/docs/lidar-camera-l515-datasheet
+
+<a id = "11">[11]</a>
+Dai, A., Chang, A.X., Savva, M., Halber, M., Funkhouser, T. and Nießner, M., 2017. Scannet: Richly-annotated 3d reconstructions of indoor scenes. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 5828-5839).URL:http://www.scan-net.org/
+
+
+## 11. Acronyms
+
+Acronym| Full Form
+---| ---
+SOTA| State-Of-The-Art
+MAE | Mean Absolute Error 
+RMSE | Root Mean Squared Error 
+RGB-D | RGB - Depth Image
