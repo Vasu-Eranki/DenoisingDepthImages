@@ -61,7 +61,8 @@ The authors in papers [[1]](#1) - [[5]](#5), used the following metrics in their
 
 A successful project would require that the model successfully denoises a depth image by leveraging the information present in the RGB image and should achieve the following values for each metric:
 
-Metric | Value 
+Metric | Value  
+--- | ---
 RMSE | 58mm
 MAE | 25mm 
 
