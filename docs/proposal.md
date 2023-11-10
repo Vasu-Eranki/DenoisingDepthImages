@@ -47,7 +47,7 @@ What are metrics by which you would check for success?
 
 ## 8. Execution Plan
 
-Describe the key tasks in executing your project, and in case of team project describe how will you partition the tasks.
+Describe the key tasks in executing your project
 
 Task    | Description 
 ------| ---
