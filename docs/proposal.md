@@ -1,8 +1,8 @@
-# Project Proposal
+## Project Proposal
 
 ## 1. Motivation & Objective
 
-The goal of this project is to leverage the information present in the RGB image to denoise the depth part of it. 
+<p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection, however the depth images procured from consumer level senors have non-negligble amounts of noise present in it, which can interfer the downstream tasks which rely on the depth information to make a decision such as in autonomous driving. The goal of this project is two fold, the first is to leverage the information present in the RGB image to denoise the depth image. The second part of this project is to leverage data driven models like neural networks to denoise the depth image. </p>
 
 ## 2. State of the Art & Its Limitations
 
@@ -24,6 +24,23 @@ What are the challenges and risks?
 
 What skills and resources are necessary to perform the project?
 
+For this project, the following skills are resources are needed for the project to be successful. 
+
+<ins>Skills</ins>  
+- Critical Thinking and Analysis
+- Knowledge of Python  
+    - Knowledge of TensorFlow/PyTorch and NumPy
+- Deep Learning Architectures with a focus on Comptuer Vision Architectures  
+     - Linear Algebra and Probability for reading deep learning publications  
+- Classical Computer Vision Techniques
+- Classical Machine Learning Techniques like Naive Bayes
+
+
+<ins>Resources</ins>
+- RGB-D Sensor &#8594; Time of Flight Sensor &#8594; Intel RealSense L515 (LiDAR based)
+- CUDA and CuDNN compatible GPU's for accelerating training (For speedy training minimum is an Nvidia A100)
+    - Minimum 8 GB of RAM to process data locally
+    - Hardware requirements are being met by Google Colab
 ## 7. Metrics of Success
 
 What are metrics by which you would check for success?
@@ -31,6 +48,14 @@ What are metrics by which you would check for success?
 ## 8. Execution Plan
 
 Describe the key tasks in executing your project, and in case of team project describe how will you partition the tasks.
+
+Task    | Description 
+------| ---
+Task 1 | Develop a basic noise model using first principle methods by recording the sensor's noise against varied scenes
+Task 2 | Use classical computer vision techniques such as bilateral filter to denoise the depth image
+Task 3 | Use basic deep learning based methods such as autoencoders to denoise the depth image
+Task 4 | Use pre-trained deep learning based methods to set the baseline 
+Task 5 | Develop deep learning based methods that leverages both Depth and RGB information to Denoise the Depth Image
 
 ## 9. Related Work
 
