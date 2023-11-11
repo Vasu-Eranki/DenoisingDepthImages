@@ -110,16 +110,18 @@ Paper 1: Self Supervised Deep Depth Denoising [[1]](#1)
 <p align="justify">&#8594; In this paper, the authors trained a depth denoiser on noisy depth images by exploting the idea that different vantage points will capture the same scene differently. While the goal of this project is to perform monocular depth denoising, the key idea from this paper that seems relevant is that the information from neighbouring pixels can be used to denoise a depth image.</p>
 
 Paper 2: High Quality Self-Supervised Deep Image Denoising [[2]](#2)
-<p align = "justify">&#8594; In this paper, the authors 
+<p align = "justify">&#8594; In this paper, the authors develop a denoiser without having access to ground truth data by leveraging CNN's and Bayesian statistics wherein the value of the depth is highly dependent on its neighbours. The paper delves into more details than others, about the noise function which is relevant to this project.  
+ 
 Paper 3: Depth image denoising using nuclear norm and learning graph model [[3]](#3)  
 
 <p align='justify'>&#8594; In this paper, the authors use a Laplacian graph model and convex optimization techniques to reduce the trace norm of the image, to remove the high frequency noise elements inside. The key takeaway from this is that data driven models are not the only way to go about it and convex optimization based techniques are robust enough and have the added benefit of being interpretable when DNN's may not be. </p>
 
 Paper 4: Spatial Hierarchy Aware Residual Pyramid Network for Time-of-Flight Depth Denoising [[4]](#4)
 
+<p align = "justify">&#8594; In this paper, the authors use a CNN based network to extract multiple patchs from the depth image and then proceed to exploit the information present across the multiple scales to denoise the image. The key element from this paper like the others discussed is that neighbouring elements do carry succint information for denoising.  
 Paper 5: Unsupervised Depth Completion and Denoising for RGB-D Sensors [[5]](#5)   
 
-<p align='justify'>&#8594; In this paper, the authors build a two stage end-to-end system that first completes the depth map before passing it through a depth denoiser. The completed depth map acted as a pseudo ground truth which was used to train the denoiser. While the goal of this project is to perform monocular depth denoising, the key takeaway from this paper is the training procedure where they randomly dropped values in the depth channel to make the estimator more robust.</p>
+<p align="justify">&#8594; In this paper, the authors build a two stage end-to-end system that first completes the depth map before passing it through a depth denoiser. The completed depth map acted as a pseudo ground truth which was used to train the denoiser. While the goal of this project is to perform monocular depth denoising, the key takeaway from this paper is the training procedure where they randomly dropped values in the depth channel to make the estimator more robust.</p>
 
 ### <a id ="9-b-datasets">9.b. Datasets</a>
 The following datasets will be used for the project either wholly or parts of it, to train the deep learning model. 
