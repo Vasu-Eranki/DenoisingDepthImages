@@ -18,19 +18,29 @@ How is it done today, and what are the limits of current practice?
 
 ## 3. Novelty & Rationale
 
-What is new in your approach and why do you think it will be successful?
+<ins>Approach</ins>
+<p align="justify">The proposed approach draws direct inspiration from monocular depth estimation where the depth image is directly estimated from the RGB image. The goal of this project is to fuse the information from the RGB image to denoise the depth image, in a self-supervised manner. The novelty in our approach is that without the use of any additional information in the form of different vantage points [1] or additional stages [5], a noisy depth image should be denoised by the system. </p>
+
+<ins>Rationale</ins>  
+
+<p align="justify">TOF sensors rely on the delay between emitting and reflection of a light signal to calculate the delay. An object further away from a sensor will have a longer delay and an object closer to the sensor will have a shorter delay. The texture of the object and the color of the object also affect the reflected light and the goal of this project is to focus on the latter. Object colored white will reflects more light when compared to other colors, and objects colored black will reflect very little light when compared to others. The color of the object matters in the amount of light reflected back to the TOF sensor and therefore the amount of noise present in each pixel has a direct relation with the associated color of that pixel, therefore theoretically it should be possible to leverage the color and scene information present in the RGB image to denoise a depth image because of the correlation between color and reflected light.  </p>
 
 ## 4. Potential Impact
 
 <p align="justify"> The goal of this project is to show that monocular depth denoising is possible, which means that the input to the model is a noisy RGB-D image and the output is a clean RGB-D image. The ramifications would be a model that is faster to train, and easier to train since it wouldn't require a larger end-to-end system or multiple sensors capturing the same scene. From an inference perspective, monocular depth denoising would help in real-time denoising since the number of frames that can be processed in a second would be comparatively more than a system which is more complex.  From a broader perspective, this could help in downstream tasks like robotics and autonomous driving which require clean depth images in real-time to make sound decisions. </p>
 
 ## 5. Challenges
-
-What are the challenges and risks?
-
+ 
 <ins>Challenges</ins>
+- Training a deep neural network based denoiser without ground truth clean images, will be a challenge, because how can the neural network be conditioned to learn what is considered a clean image.
+- Ensuring that sample bias doesn't happen when collecting data to create a simple noise function. Sample bias can show up in two forms:
+     - The noise model only works for the specific sensor for which it was collected
+     - The noise model only works for specific environment conditions (If surfaces are sleek, ambient light intensity is less than a specific value)       
+
 <ins>Risks</ins>
-<ins> Assumptions </ins>
+- The correlation between color and noise is weak or none when it was assumed that there was a strong correlation between the two
+- The proposed model only works for specific sensors and is not model agnostic
+- The proposed model is less robust to removing noise than other more complex models proposed in [[1]](#1)-[[5]](#5)
 
 ## 6. Requirements for Success
 
@@ -55,11 +65,12 @@ For this project, the following skills are resources are needed for the project 
 - RGB-D Dataset [Listed Below]("9-b-datasets")
 ## 7. Metrics of Success
 
-The authors in papers [[1]](#1) - [[5]](#5), used the following metrics in their papers to evaluate the performance of their proposed model against other benchmarks. Similarly for this project, the same metrics will be used to evaluate the performance of our proposed model. The most commonly used metrics to evaluate the robustness of the denoising systems are:    
+<p align="justify">The authors in papers [1]-[5], used the following metrics in their papers to evaluate the performance of their proposed model against other benchmarks. Similarly for this project, the same metrics will be used to evaluate the performance of our proposed model. The most commonly used metrics to evaluate the robustness of the denoising systems are :</p>  
+
 * RMSE   
 * MAE
 
-A successful project would require that the model successfully denoises a depth image by leveraging the information present in the RGB image and should achieve the following values for each metric:
+A successful project would require that the model successfully denoises a depth image by leveraging the information present in the RGB image and should achieve the following values for each metric:  
 
 Metric | Value  
 --- | ---
@@ -70,9 +81,9 @@ MAE | 25mm
 
 Describe the key tasks in executing your project
 
-Task    | Description 
+Task       | Description 
 ------| ---
-Task 1 | Develop a basic noise model using first principle methods by recording the sensor's noise against varied scenes
+Task 1 | Develop a basic noise model by recording the sensor's output against varied scenes to capture the noise statistics
 Task 2 | Use classical computer vision techniques such as bilateral filter to denoise the depth image
 Task 3 | Use basic deep learning based methods such as autoencoders to denoise the depth image
 Task 4 | Use pre-trained deep learning based methods to set the baseline 
@@ -155,3 +166,4 @@ SOTA| State-Of-The-Art
 MAE | Mean Absolute Error 
 RMSE | Root Mean Squared Error 
 RGB-D | RGB - Depth Image
+TOF | Time of Flight
