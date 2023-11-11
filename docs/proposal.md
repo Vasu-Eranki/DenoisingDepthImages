@@ -177,8 +177,8 @@ URL: https://www.intelrealsense.com/sdk-2/
 URL:https://dev.intelrealsense.com/docs/lidar-camera-l515-datasheet
 
 <a id = "11">[11]</a>
-Dai, A., Chang, A.X., Savva, M., Halber, M., Funkhouser, T. and Nießner, M., 2017. Scannet: Richly-annotated 3d reconstructions of indoor scenes. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 5828-5839).URL:http://www.scan-net.org/
+Dai, A., Chang, A.X., Savva, M., Halber, M., Funkhouser, T. and Nießner, M., 2017. Scannet: Richly-annotated 3d reconstructions of indoor scenes. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 5828-5839).URL:http://www.scan-net.org/  
 
 
-[To Abstract](#index.md)
-[To Project Report](#report.md)
+[To Abstract](#index.md)  
+[To Project Report](#report.md)  
