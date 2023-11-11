@@ -14,15 +14,15 @@ DNN | Deep Neural Network
 
 ## 1. Motivation & Objective
 
-<p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors have non-negligble amounts of noise present in it, which can interfere with the downstream tasks which rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
+<p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors has non-negligble amounts of noise present in it, which can interfere with the downstream tasks that rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
 
 ## 2. State of the Art & Its Limitations
 
 <p align="justify">Currently, there are two school of thought on how to tackle this problem, a supervised approach and a self-supervised approach. Because for this project, the goal is to denoise the image without having access to the ground truth, more focus will be on the self-supervised based state of the art model.</p>    
 
-<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image, they were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image.</p>  
+<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image. They were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image.</p>  
 
-<p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end where the first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. </p>   
+<p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end. The first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. </p>   
 
 ## 3. Novelty & Rationale
 
@@ -37,12 +37,12 @@ DNN | Deep Neural Network
 
 ## 4. Potential Impact
 
-<p align="justify"> The goal of this project is to show that monocular depth denoising is possible, which means that the input to the model is a noisy RGB-D image and the output is a clean RGB-D image. The ramifications would be a model that is faster to train, and easier to train since it wouldn't require a larger end-to-end system or multiple sensors capturing the same scene. From an inference perspective, monocular depth denoising would help in real-time denoising since the number of frames that can be processed in a second would be comparatively more than a system which is more complex.  From a broader perspective, this could help in downstream tasks like robotics and autonomous driving which require clean depth images in real-time to make sound decisions. </p>  
+<p align="justify"> The goal of this project is to show that monocular depth denoising is possible, which means that the input to the model is a noisy RGB-D image and the output is a clean RGB-D image. The ramifications would be a model that is faster and easier to train, since it wouldn't require a larger end-to-end system or multiple sensors capturing the same scene. From an inference perspective, monocular depth denoising would help process frames closer to real-time system requirements since the number of frames that can be processed in a second would be comparatively more than a system which is more complex or requires fusing multiple frames. The  broader perspective is that moncocular depth estimation, could help in downstream tasks like robotics and autonomous driving which require clean depth images in real-time to make sound decisions. </p>  
 
 ## 5. Challenges
  
 <ins>Challenges</ins>
-- Training a deep neural network based denoiser without ground truth clean images, will be a challenge, because how can the neural network be conditioned to learn what is considered a clean image.
+- Training a DNN based denoiser without ground truth images, will be a challenge. Without the ground truth, there is no simple way to evaluate the amount of noise the denoiser removes from the image since there is no prior to condition it on. 
 - Ensuring that sample bias doesn't happen when collecting data to create a simple noise function. Sample bias can show up in two forms:
      - The noise model only works for the specific sensor for which it was collected
      - The noise model only works for specific environment conditions (If surfaces are sleek, ambient light intensity is less than a specific value)       
@@ -59,7 +59,7 @@ For this project, the following skills are resources are needed for the project 
 <ins>Skills</ins>  
 - Critical Thinking and Analysis
 - Knowledge of Python  
-    - Knowledge of TensorFlow/PyTorch and NumPy
+    - Knowledge of TensorFlow/PyTorch, NumPy and OpenCV
 - Deep Learning Architectures with a focus on Comptuer Vision Architectures  
      - Linear Algebra and Probability for reading deep learning publications  
 - Classical Computer Vision Techniques
@@ -68,7 +68,7 @@ For this project, the following skills are resources are needed for the project 
 
 <ins>Resources</ins>
 - RGB-D Sensor &#8594; Time of Flight Sensor &#8594; Intel RealSense L515 (LiDAR based)
-- CUDA and CuDNN compatible GPU's for accelerating training (For speedy training minimum is an Nvidia A100)
+- CUDA and CuDNN compatible GPU's for accelerating training (An Nvidia A100 is recommended for speedy training)
     - Minimum 8 GB of RAM to process data locally
     - Hardware requirements are being met by Google Colab
  
@@ -136,7 +136,6 @@ DIODE [[8]](#8) | 2019 | Clean RGB-D Images | FARO Focus S350
 
 
 ### 9.c. Software
-
 
 For this project, the following software will be used: 
 - Python 3.9
