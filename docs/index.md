@@ -14,7 +14,7 @@
 
 # Required Submissions
 
-* [Proposal](proposal)
+* [Proposal](proposal.md)
 * [Midterm Checkpoint Presentation Slides](http://)
 * [Final Presentation Slides](http://)
 * [Final Report](report)
