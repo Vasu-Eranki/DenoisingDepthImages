@@ -110,7 +110,7 @@ Paper 1: Self Supervised Deep Depth Denoising [[1]](#1)
 <p align="justify">&#8594; In this paper, the authors trained a depth denoiser on noisy depth images by exploting the idea that different vantage points will capture the same scene differently. While the goal of this project is to perform monocular depth denoising, the key idea from this paper that seems relevant is that the information from neighbouring pixels can be used to denoise a depth image.</p>
 
 Paper 2: High Quality Self-Supervised Deep Image Denoising [[2]](#2)
-<p align = "justify">&#8594; In this paper, the authors develop a denoiser without having access to ground truth data by leveraging CNN's and Bayesian statistics wherein the value of the depth is highly dependent on its neighbours. The paper delves into more details than others, about the noise function which is relevant to this project.  
+<p align = "justify">&#8594; In this paper, the authors develop a denoiser without having access to ground truth data by leveraging CNN's and Bayesian statistics wherein the value of the depth is highly dependent on its neighbours. The paper delves into more details than others, about the noise function which is relevant to this project. </p>
  
 Paper 3: Depth image denoising using nuclear norm and learning graph model [[3]](#3)  
 
