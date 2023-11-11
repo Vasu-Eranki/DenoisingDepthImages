@@ -1,35 +1,43 @@
 ## Project Proposal
 
+
+## <ins>I. Acronyms</ins>
+
+Acronym| Full Form
+---| ---
+SOTA| State-Of-The-Art
+MAE | Mean Absolute Error 
+RMSE | Root Mean Squared Error 
+RGB-D | RGB - Depth Image
+TOF | Time of Flight
+DNN | Deep Neural Network
+
 ## 1. Motivation & Objective
 
 <p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors have non-negligble amounts of noise present in it, which can interfere with the downstream tasks which rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
 
 ## 2. State of the Art & Its Limitations
 
-How is it done today, and what are the limits of current practice?
-<p align="justify">Currently, there are two school of thought on how to tackle this problem, a supervised approach and a self-supervised approach. Because for this project, the goal is to denoise the image without having access to the ground truth, more focus will be on the self-supervised based state of the art model.  </p>  
+<p align="justify">Currently, there are two school of thought on how to tackle this problem, a supervised approach and a self-supervised approach. Because for this project, the goal is to denoise the image without having access to the ground truth, more focus will be on the self-supervised based state of the art model.</p>    
 
-
-<p align = "justify">
-    There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image, they were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image.
-</p>
+<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image, they were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image.</p>  
 
 <p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end where the first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. </p>   
 
 ## 3. Novelty & Rationale
 
 <ins>Approach</ins>
-<p align="justify">The proposed approach draws direct inspiration from monocular depth estimation where the depth image is directly estimated from the RGB image. The goal of this project is to fuse the information from the RGB image to denoise the depth image, in a self-supervised manner. The novelty in our approach is that without the use of any additional information in the form of different vantage points [1] or additional stages [5], a noisy depth image should be denoised by the system. </p>
+<p align="justify">The proposed approach draws direct inspiration from monocular depth estimation where the depth image is directly estimated from the RGB image. The goal of this project is to fuse the information from the RGB image to denoise the depth image, in a self-supervised manner. The novelty in our approach is that without the use of any additional information in the form of different vantage points [1] or additional stages [5], a noisy depth image should be denoised by the system. </p>  
 
 <ins>Rationale</ins>  
 
-<p align="justify">TOF sensors rely on the delay between emitting and reflection of a light signal to calculate the delay. An object further away from a sensor will have a longer delay and an object closer to the sensor will have a shorter delay. The texture of the object and the color of the object also affect the reflected light and the goal of this project is to focus on the latter. Object colored white will reflects more light when compared to other colors, and objects colored black will reflect very little light when compared to others. The color of the object matters in the amount of light reflected back to the TOF sensor and therefore the amount of noise present in each pixel has a direct relation with the associated color of that pixel, therefore theoretically it should be possible to leverage the color and scene information present in the RGB image to denoise a depth image because of the correlation between color and reflected light.  </p>
+<p align="justify">TOF sensors rely on the delay between emitting and reflection of a light signal to calculate the delay. An object further away from a sensor will have a longer delay and an object closer to the sensor will have a shorter delay. The texture of the object and the color of the object also affect the reflected light and the goal of this project is to focus on the latter. Object colored white will reflects more light when compared to other colors, and objects colored black will reflect very little light when compared to others. The color of the object matters in the amount of light reflected back to the TOF sensor and therefore the amount of noise present in each pixel has a direct relation with the associated color of that pixel, therefore theoretically it should be possible to leverage the color and scene information present in the RGB image to denoise a depth image because of the correlation between color and reflected light.</p>  
 
-<p align="justify"> Furthermore, it is possible to build a basic noise model from observing the noise response to three colors which are red, green and blue since all colors can be constructed as a combination of the three. Therefore the rationale of this project relies on basic color theory that all colors can be constructed from three colors and that colors influence the amount of light reflected back to the sensor which in turn can change the amount of noise introduced to the depth information captured for each pixel.</p>
+<p align="justify"> Furthermore, it is possible to build a basic noise model from observing the noise response to three colors which are red, green and blue since all colors can be constructed as a combination of the three. Therefore the rationale of this project relies on basic color theory that all colors can be constructed from three colors and that colors influence the amount of light reflected back to the sensor which in turn can change the amount of noise introduced to the depth information captured for each pixel.</p>  
 
 ## 4. Potential Impact
 
-<p align="justify"> The goal of this project is to show that monocular depth denoising is possible, which means that the input to the model is a noisy RGB-D image and the output is a clean RGB-D image. The ramifications would be a model that is faster to train, and easier to train since it wouldn't require a larger end-to-end system or multiple sensors capturing the same scene. From an inference perspective, monocular depth denoising would help in real-time denoising since the number of frames that can be processed in a second would be comparatively more than a system which is more complex.  From a broader perspective, this could help in downstream tasks like robotics and autonomous driving which require clean depth images in real-time to make sound decisions. </p>
+<p align="justify"> The goal of this project is to show that monocular depth denoising is possible, which means that the input to the model is a noisy RGB-D image and the output is a clean RGB-D image. The ramifications would be a model that is faster to train, and easier to train since it wouldn't require a larger end-to-end system or multiple sensors capturing the same scene. From an inference perspective, monocular depth denoising would help in real-time denoising since the number of frames that can be processed in a second would be comparatively more than a system which is more complex.  From a broader perspective, this could help in downstream tasks like robotics and autonomous driving which require clean depth images in real-time to make sound decisions. </p>  
 
 ## 5. Challenges
  
@@ -83,8 +91,8 @@ MAE | 25mm
 
 Describe the key tasks in executing your project
 
-Task       | Description 
-------| ---
+Task| Description 
+---| ---
 Task 1 | Develop a basic noise model by recording the sensor's output against varied scenes to capture the noise statistics
 Task 2 | Use classical computer vision techniques such as bilateral filter to denoise the depth image
 Task 3 | Use basic deep learning based methods such as autoencoders to denoise the depth image
@@ -95,15 +103,24 @@ Task 5 | Develop deep learning based methods that leverages both Depth and RGB i
 
 ### 9.a. Papers
 
-Paper 1: Self Supervised Deep Depth Denoising [[1]](#1)
+The following papers are of interest and are relevant to the project, since the depth denoisers developed in [[1]](#1) - [[5]](#5) didn't require access to clean-noisy pairs of images. The key idea from each author's paper has been mentioned below.  
 
-Paper 2: High Quality Self-Supervised Deep Image Denoising [[2]](#2)  
+Paper 1: Self Supervised Deep Depth Denoising [[1]](#1)  
 
-Paper 3: Depth image denoising using nuclear norm and learning graph model [[3]](#3)
- 
+<p align="justify">&#8594; In this paper, the authors trained a depth denoiser on noisy depth images by exploting the idea that different vantage points will capture the same scene differently. While the goal of this project is to perform monocular depth denoising, the key idea from this paper that seems relevant is that the information from neighbouring pixels can be used to denoise a depth image.</p>
+
+Paper 2: High Quality Self-Supervised Deep Image Denoising [[2]](#2)
+<p align = "justify">&#8594; In this paper, the authors 
+Paper 3: Depth image denoising using nuclear norm and learning graph model [[3]](#3)  
+
+<p align='justify'>&#8594; In this paper, the authors use a Laplacian graph model and convex optimization techniques to reduce the trace norm of the image, to remove the high frequency noise elements inside. The key takeaway from this is that data driven models are not the only way to go about it and convex optimization based techniques are robust enough and have the added benefit of being interpretable when DNN's may not be. </p>
+
 Paper 4: Spatial Hierarchy Aware Residual Pyramid Network for Time-of-Flight Depth Denoising [[4]](#4)
 
-Paper 5: Unsupervised Depth Completion and Denoising for RGB-D Sensors [[5]](#5)
+Paper 5: Unsupervised Depth Completion and Denoising for RGB-D Sensors [[5]](#5)   
+
+<p align='justify'>&#8594; In this paper, the authors build a two stage end-to-end system that first completes the depth map before passing it through a depth denoiser. The completed depth map acted as a pseudo ground truth which was used to train the denoiser. While the goal of this project is to perform monocular depth denoising, the key takeaway from this paper is the training procedure where they randomly dropped values in the depth channel to make the estimator more robust.</p>
+
 ### <a id ="9-b-datasets">9.b. Datasets</a>
 The following datasets will be used for the project either wholly or parts of it, to train the deep learning model. 
 
@@ -160,12 +177,3 @@ URL:https://dev.intelrealsense.com/docs/lidar-camera-l515-datasheet
 Dai, A., Chang, A.X., Savva, M., Halber, M., Funkhouser, T. and Nießner, M., 2017. Scannet: Richly-annotated 3d reconstructions of indoor scenes. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 5828-5839).URL:http://www.scan-net.org/
 
 
-## 11. Acronyms
-
-Acronym| Full Form
----| ---
-SOTA| State-Of-The-Art
-MAE | Mean Absolute Error 
-RMSE | Root Mean Squared Error 
-RGB-D | RGB - Depth Image
-TOF | Time of Flight
