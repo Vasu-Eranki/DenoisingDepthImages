@@ -119,6 +119,8 @@ Paper 3: Depth image denoising using nuclear norm and learning graph model [[3]]
 Paper 4: Spatial Hierarchy Aware Residual Pyramid Network for Time-of-Flight Depth Denoising [[4]](#4)
 
 <p align = "justify">&#8594; In this paper, the authors use a CNN based network to extract multiple patchs from the depth image and then proceed to exploit the information present across the multiple scales to denoise the image. The key element from this paper like the others discussed is that neighbouring elements do carry succint information for denoising.  
+
+
 Paper 5: Unsupervised Depth Completion and Denoising for RGB-D Sensors [[5]](#5)   
 
 <p align="justify">&#8594; In this paper, the authors build a two stage end-to-end system that first completes the depth map before passing it through a depth denoiser. The completed depth map acted as a pseudo ground truth which was used to train the denoiser. While the goal of this project is to perform monocular depth denoising, the key takeaway from this paper is the training procedure where they randomly dropped values in the depth channel to make the estimator more robust.</p>
