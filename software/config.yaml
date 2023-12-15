@@ -1,4 +1,0 @@
----
-model:
-  base filters: 128
-  channels: 3
