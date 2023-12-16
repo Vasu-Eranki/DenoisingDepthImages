@@ -13,11 +13,10 @@
 <img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/nyu_1.png">
 <img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/nyu_2.png">
 
-<p align="center> <b>Generated Results for the TransCG Dataset </b></p>  
- 
-<img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_1.png">  
+<p align="center"> <b>Generated Results for the TransCG Dataset </b></p> 
 
-<img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_2.png">
+<img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_1.png">  
+<img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_2.png">  
 <p align="center"> Table 1 : Results against two datasets for various algorithms </p>  
 
  Dataset |Metric| Bilateral Filter | SOTA [1] | MSE w AWGN Noise | MSE | MSE w Group Sparsity  | MSE w downstream tasks
