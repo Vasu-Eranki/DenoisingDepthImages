@@ -1,3 +1,15 @@
+## <ins>I. Acronyms</ins>
+
+Acronym| Full Form
+---| ---
+SOTA| State-Of-The-Art
+MAE | Mean Absolute Error 
+RMSE | Root Mean Squared Error 
+RGB-D | RGB - Depth Image
+TOF | Time of Flight
+DNN | Deep Neural Network  
+
+
 # Table of Contents
 * [Abstract](#Abstract)
 * [Introduction](#1-introduction)
@@ -14,16 +26,7 @@
 
 # 1. Introduction
 
-## <ins>I. Acronyms</ins>
 
-Acronym| Full Form
----| ---
-SOTA| State-Of-The-Art
-MAE | Mean Absolute Error 
-RMSE | Root Mean Squared Error 
-RGB-D | RGB - Depth Image
-TOF | Time of Flight
-DNN | Deep Neural Network
 
 ## 1. Motivation & Objective
 
