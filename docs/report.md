@@ -144,7 +144,7 @@ Fig 5: Parameterized Noise Function based on Color
 
 <ins> **Denoising Results** </ins>
 
-<p align = "justify">  Sample Results from the various algorithms and models used for this experiment are shown below in Fig.6 and the results are tabulated in Table 1 and Table 2. The MAE (Mean Absolute Error) and the RMSE (Root Mean Squared Error) metrics were used for gauging the efficacy of each model. For the bilateral filter and anisotropic diffusion based filter, an out of the box implementation from OpenCV was used with minimal hyperparameter tuning. 
+<p align = "justify">  Sample Results from the various algorithms and models used for this experiment are shown below in Fig.6 and the results are tabulated in Table 1 and Table 2. The MAE (Mean Absolute Error) and the RMSE (Root Mean Squared Error) metrics were used for gauging the efficacy of each model. For the bilateral filter and anisotropic diffusion based filter, an out of the box implementation from OpenCV was used with minimal hyperparameter tuning. </p>
 
 <p align = "center">
  <kbhd>
