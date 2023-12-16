@@ -21,10 +21,16 @@
 <p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors has non-negligble amounts of noise present in it, which can interfere with the downstream tasks that rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
 
 ## 2. State of the Art & Its Limitations  
-<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image. They were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image.</p>  
-
-<p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end. The first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. </p>   
-
+<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image. They were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image. A visualisation of their architecture is shown in Fig.1 /p> 
+<kbhd>
+<img src = "./media/SOTA_1.png">
+</kbhd>
+<p align = "center"> Fig 1. Visualisation of the Architecture that used multi-view supervision </p>
+<p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end. The first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. A visualisation of the training process is shown in Fig.2 </p>   
+<kbhd>
+<img src = "./media/SOTA_2.png">
+</kbhd>
+<p align = "center">Fig.2 Visualisation of the Architecture that used depth estimation prior to denoising</p>
 
 ## 3. Novelty & Rationale
 
@@ -68,6 +74,8 @@ The project can be divided into two subparts which are:
 
  <ins> Creating a Noise Function </ins>
  <p align = "justify"> Time of Flight sensors suffer from noise which depends on the distance of the scene captured as well as the intensity of the scene captured. If a scene has objects further away from the sensor, the reflected signal firstly undergoes attenuation because of the distance; the signal undergoes further attenuation because of multipath interference, which can destructively interfere with the reflected LiDar Signal. 
+
+
  </p>
  <img src = "./media/Example.jpg">
  <ins> Training a Denoiser </ins>
@@ -75,7 +83,7 @@ The project can be divided into two subparts which are:
  <img src = "./media/MyArch.png">
 
 # 4. Evaluation and Results
-
+<p align = "center"> Table 1: Results of Various Algorithms against two datasets on MAE and RMSE Metrics </p>
  Dataset |Metric| Bilateral Filter | SOTA [1] | MSE w AWGN Noise | MSE | MSE w Group Sparsity  | MSE w downstream tasks
 ---| --- | --- | --- | ---| ---| ---| ---
 NYU Depth Dataset |  MAE |  16.41mm|  44.34mm|  <b>8.58mm</b>|  16.74mm|  11.75mm|  10.01mm| 15.31mm
@@ -83,6 +91,7 @@ NYU Depth Dataset |  RMSE | 37.62mm| 196.89mm| 30.15mm| 36.30mm| <b>30.05mm</b>|
 TransCG Dataset |  MAE |  41.03mm| 49.24mm| <b>11.02mm</b>| 31.01mm| 35.99mm| 16.35mm| 37.81mm| 
 TransCG Dataset |  RMSE|  84.90mm| 169.32mm| 37.78mm| 42.12mm|  46.30mm| <b>32.45mm</b>| 49.05mm| 
 
+<p align ="left">Table 2: Time taken by each denoising algorithm to process one depth image </p>
 Algorithm |  Inference Time 
 ---|  ---
 Bilateral Filter |  22ms 
@@ -90,11 +99,10 @@ Anisotropic Diffusion based Filter |  0.64s
 SOTA [1] |  16ms - On a T4 GPU (8GB of RAM)
 Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
-
-
 # 5. Discussion and Conclusions
 
 <ins> Discussion </ins>
+
 <ins> Conclusion </ins> 
 <p align = "justify"> By using a GMM to approximate the noise function. Color based noise was added to the noisy images which were in turn used to train the U-Net which estimated the amount of noise present in the images. The estimated noised is then removed from the image to generate the denoised depth image. From the three proposed models which involved training on a MSE loss and other additional constraints it can be seen from Table 1 that the model trained on MSE with an additional constraint of the sparsity on the latent space performed the best and even outperformed the SOTA [[1]](#1) on the *RMSE* metric. Furthermore the same model was able to successfully denoise images in a zero-shot manner when evaluated on the TransCG dataset [[12]](#12), highlighting that the model was device agnostic since the NYU depth dataset was collected on a Kinect Sensor while the TransCG dataset was collected on a Intel L515 [[10]](#10) </p>
 
