@@ -192,6 +192,7 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
 
 # 6. References
+<p align = "justify">
 <a id="1">[1]</a>
 Sterzentsenko, V., Saroglou, L., Chatzitofis, A., Thermos, S., Zioulis, N., Doumanoglou, A., Zarpalas, D. and Daras, P., 2019. Self-supervised deep depth denoising. In Proceedings of the IEEE/CVF International Conference on Computer Vision (pp. 1242-1251).   URL: www.openaccess.thecvf.com/content_ICCV_2019/papers/Sterzentsenko_Self-Supervised_Deep_Depth_Denoising_ICCV_2019_paper.pdf  
 
@@ -233,7 +234,7 @@ Gurrola-Ramos, J., Dalmau, O. and Alarcón, T.E., 2021. A residual dense u-net n
 
 <a id = "15">[15]</a>
 Yang, C., Liang, L. and Su, Z., 2023. Real-World Denoising via Diffusion Model. arXiv preprint arXiv:2305.04457.
-
+</p>
 
 ## <ins>I. Acronyms</ins>
 
