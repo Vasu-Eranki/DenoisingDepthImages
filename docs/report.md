@@ -21,6 +21,7 @@
 <p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors has non-negligble amounts of noise present in it, which can interfere with the downstream tasks that rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
 
 ## 2. State of the Art & Its Limitations  
+<p align="justify">Currently, there are two school of thought on how to tackle this problem, a supervised approach and a self-supervised approach. Because for this project, the goal is to denoise the image without having access to the ground truth, more focus will be on the self-supervised based state of the art model.</p>  
 <p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image. They were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image. A visualisation of their architecture is shown in Fig.1 </p> 
 <p align = "center">
 <kbhd>
@@ -67,7 +68,7 @@
 # 2. Related Work
 
 
-<p align="justify">Currently, there are two school of thought on how to tackle this problem, a supervised approach and a self-supervised approach. Because for this project, the goal is to denoise the image without having access to the ground truth, more focus will be on the self-supervised based state of the art model.</p>    
+  
 
 
 
@@ -81,16 +82,24 @@ The project can be divided into two subparts which are:
 
 The second parameter that affects the amount of noise present in the image is intensity, because for LiDar based sensors such as Intel L515 [[9]](#9), the laser transmits a pusled signal with a wavelength of  *860nm*. Unfortunately the same wavelength is present in ambient sunlight and other light sources such as Halogen bulbs and LED's. In the presence of such sources, the sensor is unable to distinguish between the received signal and the ambient light, this causes spurious and anomalous depth measurements.  
 
-The 
+Since there was no dataset that had color-depth noise pairs, manual data collection was done where multiple colours were flashed on a screen like the one shown in Fig.3, and the associated depth readings were captured. To mitigate the impact of distance and intensity based noise, the readings were actually taken in a dark room with no other soure of light and the distance between the screen and the display unit was fixed at 0.5m. To prevent transient or spurious noise from entering the depth measurements, the depth readings were averaged over a 100 frames for each colour. Since the depth was fixed, the process to calculate the noise was quite simple; by subtracting the true depth from the measured depth, the noise distribution for each colour was found and this was then used in creating a noise based function. This procedure was done for a total of 27 colors ranging from Black to White.  </p> 
 
- </p>
- <p align = "center"><kbhd>
- <img src = "./media/Example.jpg"></kbhd></p>
+<p align = "center">
+  <kbhd>
+  <img src = "./media/Example.jpg">
+  </kbhd>
+ Figure 3. Depiction of Setup
+</p>
+<p align = "justify">After acquiring the color-noise pairs, the next step was to create a parameterized noise function that could be applied to training the neural network. Initial attempts with using a Random Forest and K-Nearest Neighbours failed since these methods were not able to scale well during training. A Gaussian Mixture Model (GMM) was instead used since the noise distribution did resemble a gaussian noise function. The mixture model was constrained to only have 3 components to emulate the noise introduced by R, G and B. </p> 
+
+
+
  <ins> Training a Denoiser </ins>
 
  <img src = "./media/MyArch.png">
 
 # 4. Evaluation and Results
+
 <p align = "center"> Table 1: Results of Various Algorithms against two datasets on MAE and RMSE Metrics </p>
  Dataset |Metric| Bilateral Filter | SOTA [1] | MSE w AWGN Noise | MSE | MSE w Group Sparsity  | MSE w downstream tasks
 ---| --- | --- | --- | ---| ---| ---| ---
