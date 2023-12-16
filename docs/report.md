@@ -103,8 +103,8 @@ The project can be divided into two subparts which are:
  proposed by [14] to denoise RGB images. Unlike the former model which generated the denoised image at the output, the proposed model generates the per pixel estimated noise in the image, which is then subtracted from the noisy depth image to generate the denoised depth image A visualisation of the training procedure can be seen in Fig.4 . This was done to help stabilize training since depth values vary from image to image and are not bounded while the estimated noise is bounded. By creating a bounded output, the risks of experiencing exploding gradients were mitgated. The minimize the risk of overfitting the model was trained with the following parameters :</p> 
 
  - Dropout of 50%
- - Learning Rate of $10^{-4}$ with a learning rate scheduler that reduces the learning rate by 10% each epoch
- - $L_{2}$ regularization of $10^{-4}$
+ - Learning Rate of 10<sup>-4</sup> with a learning rate scheduler that reduces the learning rate by 10% each epoch
+ - L<sub>2</sub> regularization of 10<sup>-4</sup>
 <p align = "center"><kbhd>
  <img src = "./media/MyArch.png">
 </kbhd>
