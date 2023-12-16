@@ -73,8 +73,9 @@
 
 <p align = "justify"> Similar to the earlier paper proposed by Sterzentsenko et al., In [4] the model proposed by Dong et.al uses a concept similar to multi-view supervision wherein using a pyramid based convolutional neural network, multiple patches of different sizes are extracted from the depth image, which are then used to denoise the image. Extracting multiple patches allows the CNN to have access to the local characteristics as well as the global characteristics where the former offers more information about the noise and the latter offers more information about the scene thereby preventing the model from removing high frequency details like edges from the image. </p>
 
-<p align = "justify"> 
-<p align = "justify"> Besides the neural network papers mentioned above, Yan et.al [3] proposed a convex optimization based framework that denoises an image by reducing the nuclear norm of the image, which is a proven heuristic in denoising since most physical processes can be expressed as low order dynamical systems. Therefore, by reducing the rank of the matrix (Image) the authors were successfully able to denoise the image, in a zero-shot manner. </p>
+<p align = "justify"> Besides the neural network based implementations mentioned above, Yan et.al [3] proposed a convex optimization based framework that denoises an image by reducing the nuclear norm of the image, which is a proven heuristic in denoising since most physical processes can be expressed as low order dynamical systems. Therefore, by reducing the rank of the matrix (Image) the authors were successfully able to denoise the image, in a zero-shot manner. </p>
+
+<p align = "justify>
 
 
 
@@ -218,6 +219,11 @@ Dai, A., Chang, A.X., Savva, M., Halber, M., Funkhouser, T. and Nießner, M., 20
 Wang, Y., Chen, X., Cao, L., Huang, W., Sun, F. and Wang, Y., 2022. Multimodal token fusion for vision transformers. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 12186-12195).
 <a id ="14">[14]</a>
 Gurrola-Ramos, J., Dalmau, O. and Alarcón, T.E., 2021. A residual dense u-net neural network for image denoising. IEEE Access, 9, pp.31742-31754.
+
+<a id = "15">[15]</a>
+Yang, C., Liang, L. and Su, Z., 2023. Real-World Denoising via Diffusion Model. arXiv preprint arXiv:2305.04457.
+
+
 ## <ins>I. Acronyms</ins>
 
 Acronym| Full Form
