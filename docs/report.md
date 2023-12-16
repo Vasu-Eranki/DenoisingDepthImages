@@ -90,14 +90,19 @@ Since there was no dataset that had color-depth noise pairs, manual data collect
   </kbhd>
  Figure 3. Depiction of Setup
 </p>
-<p align = "justify">After acquiring the color-noise pairs, the next step was to create a parameterized noise function that could be applied to training the neural network. Initial attempts with using a Random Forest and K-Nearest Neighbours failed since these methods were not able to scale well during training. A Gaussian Mixture Model (GMM) was instead used since the noise distribution did resemble a gaussian noise function. The mixture model was constrained to only have 3 components to emulate the noise introduced by R, G and B. </p> 
-
-
+<p align = "justify">After acquiring the color-noise pairs, the next step was to create a parameterized noise function that could be applied to training the neural network. Initial attempts with using a Random Forest and K-Nearest Neighbours failed since these methods were not able to scale well during training. A Gaussian Mixture Model (GMM) was instead used since the noise distribution did resemble a gaussian noise function. The mixture model was constrained to only have 3 components to emulate the noise introduced by R, G and B. </p>   
 
  <ins> Training a Denoiser </ins>
 
+<p align = "justify"> The proposed architecture was heavily inspired by a denoising U-Net proposed by [[14]](#14) to denoise RGB images. Unlike the former model which generated the denoised image at the output, the proposed model generates the per pixel estimated noise in the image, which is then subtracted from the noisy depth image to generate the denoised depth image. This was done to help stabilize training since depth values vary from image to image and are not bounded while the estimated noise is bounded. By creating a bounded output, the risks of experiencing exploding gradients were mitgated. The minimize the risk of overfitting the model was trained with the following parameters :</p>
+* Dropout of 50%  
+* Initia Learning Rate of 10<sup>-4</sup> with a learning rate scheduler that reduces the learning rate by 10% at each epoch  
+* $L_{2}$ regularization applied to all weights 
+<p align = "center"><kbhd>
  <img src = "./media/MyArch.png">
-
+</kbhd>
+ Fig 4. Visualisation of proposed architecture
+</p>
 # 4. Evaluation and Results
 
 <ins> Color Noise </ins>
