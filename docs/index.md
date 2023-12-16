@@ -16,5 +16,5 @@
 
 * [Proposal](proposal.md)
 * [Midterm Checkpoint Presentation Slides](https://docs.google.com/presentation/d/1Kyzuc4vfThnysSqpJy_nGMxYRILOdqt1/edit?usp=sharing&ouid=109510607650224076456&rtpof=true&sd=true)
-* [Final Presentation Slides](http://)
+* [Final Presentation Slides](https://docs.google.com/presentation/d/1Qz5Prh5TxgHiTDqIplJr0FZuXQBvTlMh/edit?usp=sharing&ouid=109510607650224076456&rtpof=true&sd=true)
 * [Final Report](report)
