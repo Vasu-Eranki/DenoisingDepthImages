@@ -67,8 +67,16 @@
 
 # 2. Related Work
 
+<p align = "justify"> There are two schools of though in regards to depth denoising as mentioned before. The focus of this literature survey would be on the models trained in a self-supervised/ unsupervised manner. In Sterzentsenko et.al [1], the authors proposed a multi-view supervision network which leverages the fact that the same scene taken at different angles has different amounts of noise present in it since the noise isn't static. The input to the network is 4 depth maps taken at slightly different angles and the output is the 'fused' denoised depth map. While the model is State of the Art (SOTA), it does require 4 different training images and since there is no dataset that has this structure. A custom dataset would need to be used for training the model.</p>
 
-  
+<p align = "justify"> The second paper proposed by Fan et.al [5] which has been mentioned above uses a depth estimator to create a pseudo-ground truth estimate which is then used by the denoiser for training. In the paper Both networks were trained in parallel, but for practical reasons, the depth estimator could be fixed whilst training the depth denoiser. The computational requirements for training both make it an undesireable trait for large datasets .</p>
+
+<p align = "justify"> Similar to the earlier paper proposed by Sterzentsenko et al., In [4] the model proposed by Dong et.al uses a concept similar to multi-view supervision wherein using a pyramid based convolutional neural network, multiple patches of different sizes are extracted from the depth image, which are then used to denoise the image. Extracting multiple patches allows the CNN to have access to the local characteristics as well as the global characteristics where the former offers more information about the noise and the latter offers more information about the scene thereby preventing the model from removing high frequency details like edges from the image. </p>
+
+<p align = "justify"> 
+<p align = "justify"> Besides the neural network papers mentioned above, Yan et.al [3] proposed a convex optimization based framework that denoises an image by reducing the nuclear norm of the image, which is a proven heuristic in denoising since most physical processes can be expressed as low order dynamical systems. Therefore, by reducing the rank of the matrix (Image) the authors were successfully able to denoise the image, in a zero-shot manner. </p>
+
+
 
 
 
