@@ -15,7 +15,8 @@
 
 <p align="center> <b>Generated Results for the TransCG Dataset </b></p>  
  
-<img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_1.png">
+<img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_1.png">  
+
 <img src = "https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/transcg_2.png">
 <p align="center"> Table 1 : Results against two datasets for various algorithms </p>  
 
