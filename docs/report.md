@@ -192,8 +192,8 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
 
 <ins> Navigation </ins>  
-* [Back to Index](#index.md)  
-* [Back to Proposal](#proposal.md)
+* [Back to Index](./index.md)  
+* [Back to Proposal](./proposal.md)
 
 # 6. References
 
