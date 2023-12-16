@@ -94,25 +94,26 @@ The project can be divided into two subparts which are:
 
  <ins> Training a Denoiser </ins>  
 <p align = "justify"> The proposed architecture was heavily inspired by a denoising U-Net
- proposed by [14] to denoise RGB images. Unlike the former model which generated the denoised image at the output, the proposed model generates the per pixel estimated noise in the image, which is then subtracted from the noisy depth image to generate the denoised depth image. This was done to help stabilize training since depth values vary from image to image and are not bounded while the estimated noise is bounded. By creating a bounded output, the risks of experiencing exploding gradients were mitgated. The minimize the risk of overfitting the model was trained with the following parameters :</p> 
+ proposed by [14] to denoise RGB images. Unlike the former model which generated the denoised image at the output, the proposed model generates the per pixel estimated noise in the image, which is then subtracted from the noisy depth image to generate the denoised depth image A visualisation of the training procedure can be seen in Fig.4 . This was done to help stabilize training since depth values vary from image to image and are not bounded while the estimated noise is bounded. By creating a bounded output, the risks of experiencing exploding gradients were mitgated. The minimize the risk of overfitting the model was trained with the following parameters :</p> 
 
  - Dropout of 50%
  - Learning Rate of $10^{-4}$ with a learning rate scheduler that reduces the learning rate by 10% each epoch
- - $L_{2}$ regularization of $10^{-4}$  
-
-Additional Details about the model are as follows:
- - Trained for a total of 10 Epochs on a Nvidia T4 GPU with 8GB of GPU RAM
- - Number of Trainable Parameters 2.6 Million
-
-< p align = "justify"> The model was trained on the NYU Depth Dataset and evaluated on the TransCG Dataset in a zeroshot manner. During training, additional color based noise was added to the Depth channel in the RGBD image while keeping the RGB image untouched, before being passed to the model for training. This was done to inject the color based information into the model in hopes that it would learn to denoise the image by inspecting the RGB Image. As a control experiment, a model was trained with AWGN noise instead of color based noise to ascertain this. If the model truly did learn to denoise the depth image from RGB, the model trained on color based noise would outperform the model trained on AWGN noise. </p>
-
-<p align = "justify"> 3 Variations of the model were trained during the course of this project. In all three variations, the MSE loss was used to measure the difference between the denoised estimate and the true original depth. In the second variation, an additional sparsity constraint was added to the model to prevent it from overfitting by enforcing that the latent space projection of the image to be sparse.In the third variation of the model, the model received a gradient signal from a downstream tasks which for this project was a RGBD based Semantic Segmentation model. The idea was that by seeing the difference in degradation in output between the denoised and original depth image, the model would learn to denoise better. Similar to Generative Adversarial Networks, but the Adversary here was fixed for the entire training time. </p>
-
+ - $L_{2}$ regularization of $10^{-4}$
 <p align = "center"><kbhd>
  <img src = "./media/MyArch.png">
 </kbhd>
  Fig 4. Visualisation of proposed architecture
 </p>
+
+Additional Details about the model are as follows:
+ - Trained for a total of 10 Epochs on a Nvidia T4 GPU with 8GB of GPU RAM
+ - Number of Trainable Parameters 2.6 Million
+
+<p align = "justify"> The model was trained on the NYU Depth Dataset and evaluated on the TransCG Dataset in a zeroshot manner. During training, additional color based noise was added to the Depth channel in the RGBD image while keeping the RGB image untouched, before being passed to the model for training. This was done to inject the color based information into the model in hopes that it would learn to denoise the image by inspecting the RGB Image. As a control experiment, a model was trained with AWGN noise instead of color based noise to ascertain this. If the model truly did learn to denoise the depth image from RGB, the model trained on color based noise would outperform the model trained on AWGN noise. </p>
+
+<p align = "justify"> 3 Variations of the model were trained during the course of this project. In all three variations, the MSE loss was used to measure the difference between the denoised estimate and the true original depth. In the second variation, an additional sparsity constraint was added to the model to prevent it from overfitting by enforcing that the latent space projection of the image to be sparse.In the third variation of the model, the model received a gradient signal from a downstream tasks which for this project was a RGBD based Semantic Segmentation model. The idea was that by seeing the difference in degradation in output between the denoised and original depth image, the model would learn to denoise better. Similar to Generative Adversarial Networks, but the Adversary here was fixed for the entire training time. </p>
+
+
 # 4. Evaluation and Results
 
 <ins> Color Noise </ins>
