@@ -126,12 +126,23 @@ Additional Details about the model are as follows:
 
 # 4. Evaluation and Results
 
-<ins> Color Noise </ins>
+<ins>**Color Noise** </ins>
+
+The results for the experiment involving color are shown below in Fig.5. Some of the interesting insights collected from the experiments ascertaining the relationship between color and noise are mentioned below:
+- Brighter colors such as White, Pink and Yellow indicate the presence of higher noise in the associated depth pixel
+- Noise isn't additive since the noise induced by R, G and B don't add up to final noise present in the depth image. All 3 channels interact with each other in a complicated manner
+- The source of this error is in the sensor since every physics based reflection law contradicts the findings generated from below. The sensor used in the ToF camera must be frequency sensitive and thus some colours are better captured over others.
+- The distributions of noise in the depth map can be approximated by a GMM effectively with 3 Gaussians, which can be seen from the *CDF* plot wherein the predicted *CDF* and the actual *CDF* are similar in nature.
+ 
+   
+   
+
 <p align = "middle">
  <kbhd>
 <img src = "./media/Figure_1.png" width = 400>
 <img src = "./media/PDF.png" width = 400>
 <img src = "./media/CDF.png" width = 400>
+  <img src = "./media/RGB.png" width = 400>
  </kbhd>  
 </p>
 <p align = "center">
