@@ -188,8 +188,12 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
 <ins> Conclusion </ins>  
 
-<p align = "justify"> By using a GMM to approximate the noise function. Color based noise was added to the noisy images which were in turn used to train the U-Net which estimated the amount of noise present in the images. The estimated noised is then removed from the image to generate the denoised depth image. From the three proposed models which involved training on a MSE loss and other additional constraints it can be seen from Table 1 that the model trained on MSE with an additional constraint of the sparsity on the latent space performed the best and even outperformed the SOTA [1] on the RMSE metric. Furthermore the same model was able to successfully denoise images in a zero-shot manner when evaluated on the TransCG dataset [12], highlighting that the model was device agnostic since the NYU depth dataset was collected on a Kinect Sensor while the TransCG dataset was collected on a Intel L515 [10]. </p>  
+<p align = "justify"> By using a GMM to approximate the noise function. Color based noise was added to the noisy images which were in turn used to train the U-Net which estimated the amount of noise present in the images. The estimated noised is then removed from the image to generate the denoised depth image. From the three proposed models which involved training on a MSE loss and other additional constraints it can be seen from Table 1 that the model trained on MSE with an additional constraint of the sparsity on the latent space performed the best and even outperformed the SOTA [1] on the RMSE metric. Furthermore the same model was able to successfully denoise images in a zero-shot manner when evaluated on the TransCG dataset [12], highlighting that the model was device agnostic since the NYU depth dataset was collected on a Kinect Sensor while the TransCG dataset was collected on a Intel L515 [10]. </p>   
 
+
+<ins> Navigation </ins>  
+* [Back to Index](#index.md)  
+* [Back to Proposal](#proposal.md)
 
 # 6. References
 
