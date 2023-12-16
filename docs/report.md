@@ -96,6 +96,7 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
 <ins> Discussion </ins>
 <ins> Conclusion </ins> 
+<p align = "justify"> By using a GMM to approximate the noise function. Color based noise was added to the noisy images which were in turn used to train the U-Net which estimated the amount of noise present in the images. The estimated noised is then removed from the image to generate the denoised depth image. From the three proposed models which involved training on a MSE loss and other additional constraints it can be seen from Table 1 that the model trained on MSE with an additional constraint of the sparsity on the latent space performed the best and even outperformed the SOTA [[1]](#1) on the *RMSE* metric. Furthermore the same model was able to successfully denoise images in a zero-shot manner when evaluated on the TransCG dataset [ </p>
 
 
 # 6. References
@@ -131,6 +132,12 @@ URL:https://dev.intelrealsense.com/docs/lidar-camera-l515-datasheet
 <a id = "11">[11]</a>
 Dai, A., Chang, A.X., Savva, M., Halber, M., Funkhouser, T. and Nießner, M., 2017. Scannet: Richly-annotated 3d reconstructions of indoor scenes. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 5828-5839).URL:http://www.scan-net.org/  
 
+<a id = "12">[12]</a>Fang, H., Fang, H.S., Xu, S. and Lu, C., 2022. Transcg: A large-scale real-world dataset for transparent object depth completion and a grasping baseline. IEEE Robotics and Automation Letters, 7(3), pp.7383-7390.
+
+<a id = "13">[13]</a>
+Wang, Y., Chen, X., Cao, L., Huang, W., Sun, F. and Wang, Y., 2022. Multimodal token fusion for vision transformers. In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 12186-12195).
+<a id ="14">[14]</a>
+Gurrola-Ramos, J., Dalmau, O. and Alarcón, T.E., 2021. A residual dense u-net neural network for image denoising. IEEE Access, 9, pp.31742-31754.
 ## <ins>I. Acronyms</ins>
 
 Acronym| Full Form
@@ -141,3 +148,4 @@ RMSE | Root Mean Squared Error
 RGB-D | RGB - Depth Image
 TOF | Time of Flight
 DNN | Deep Neural Network  
+GMM | Gaussian Mixture Model
