@@ -61,7 +61,18 @@
 
 
 
-# 3. Technical Approach
+# 3. Technical Approach 
+The project can be divided into two subparts which are:
+ - Creating a noise function
+ - Training a Denoiser
+
+ <ins> Creating a Noise Function </ins>
+ <p align = "justify"> Time of Flight sensors suffer from noise which depends on the distance of the scene captured as well as the intensity of the scene captured. If a scene has objects further away from the sensor, the reflected signal firstly undergoes attenuation because of the distance; the signal undergoes further attenuation because of multipath interference, which can destructively interfere with the reflected LiDar Signal. 
+ </p>
+ <img src = "./media/Example.jpg">
+ <ins> Training a Denoiser </ins>
+
+ <img src = "./media/MyArch.png">
 
 # 4. Evaluation and Results
 
@@ -82,6 +93,10 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
 
 # 5. Discussion and Conclusions
+
+<ins> Discussion </ins>
+<ins> Conclusion </ins> 
+
 
 # 6. References
 <a id="1">[1]</a>
