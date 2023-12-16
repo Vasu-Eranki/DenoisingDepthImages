@@ -180,9 +180,13 @@ Anisotropic Diffusion based Filter |  0.64s
 SOTA [1] |  16ms - On a T4 GPU (8GB of RAM)
 Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
-# 5. Discussion and Conclusions
+# 5. Analysis and Conclusions
 
-<ins> Discussion </ins>
+<ins>Analysis</ins>
+
+<p align = "justify"> From Table 1, it can be seen that 2 of the 3 proposed models were able to surpass the SOTA model [1] on the NYU Depth Dataset on the RMSE metric by 6mm, which highlights the efficacy of leveraging the information present inside the color image, however it should be highlighted that the proposed models were trained on the MSE metric while the SOTA model wasn't, this is further evident from the average performance of the model on the MAE metric. 
+
+
 
 <ins> Conclusion </ins>  
 
