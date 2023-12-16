@@ -133,9 +133,6 @@ The results for the experiment involving color are shown below in Fig.5. Some of
 - Noise isn't additive since the noise induced by R, G and B don't add up to final noise present in the depth image. All 3 channels interact with each other in a complicated manner
 - The source of this error is in the sensor since every physics based reflection law contradicts the findings generated from below. The sensor used in the ToF camera must be frequency sensitive and thus some colours are better captured over others.
 - The distributions of noise in the depth map can be approximated by a GMM effectively with 3 Gaussians, which can be seen from the *CDF* plot wherein the predicted *CDF* and the actual *CDF* are similar in nature.
- 
-   
-   
 
 <p align = "middle">
  <kbhd>
@@ -149,7 +146,9 @@ The results for the experiment involving color are shown below in Fig.5. Some of
 Fig 5: Parameterized Noise Function based on Color 
 </p>
 
-<ins> Denoising Results </ins>
+<ins> **Denoising Results** </ins>
+
+<p align = "justify">  Sample Results from the various algorithms and models used for this experiment are shown below in Fig.6 and the results are tabulated in Table 1 and Table 2. The MAE (Mean Absolute Error) and the RMSE (Root Mean Squared Error) metrics were used for gauging the efficacy of each model. For the bilateral filter and anisotropic diffusion based filter, an out of the box implementation from OpenCV was used with minimal hyperparameter tuning. 
 
 <p align = "center">
  <kbhd>
