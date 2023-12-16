@@ -45,6 +45,8 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 # Required Submissions
 
 * [Proposal](proposal.md)
-* [Midterm Checkpoint Presentation Slides](https://docs.google.com/presentation/d/1Kyzuc4vfThnysSqpJy_nGMxYRILOdqt1/edit?usp=sharing&ouid=109510607650224076456&rtpof=true&sd=true)
-* [Final Presentation Slides](https://docs.google.com/presentation/d/1Qz5Prh5TxgHiTDqIplJr0FZuXQBvTlMh/edit?usp=sharing&ouid=109510607650224076456&rtpof=true&sd=true)
+* [Midterm Checkpoint Presentation Slides Hosted on  Google Drive](https://docs.google.com/presentation/d/1Kyzuc4vfThnysSqpJy_nGMxYRILOdqt1/edit?usp=sharing&ouid=109510607650224076456&rtpof=true&sd=true)
+* [Midterm Checkpoint Presentation Slides Hosted on Github](https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/MidtermPresentation.pdf)
+* [Final Presentation Slides Hosted on Google Drive](https://docs.google.com/presentation/d/1Qz5Prh5TxgHiTDqIplJr0FZuXQBvTlMh/edit?usp=sharing&ouid=109510607650224076456&rtpof=true&sd=true)
+* [Final Presentation Slides Hosted on Github](https://github.com/Vasu-Eranki/DenoisingDepthImages/blob/main/Presentation%20Material/FinalProjectPresentation.pdf)
 * [Final Report](report.md)
