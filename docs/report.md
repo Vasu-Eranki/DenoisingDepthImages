@@ -21,15 +21,19 @@
 <p align ="justify">Depth maps are a critical part of many computer vision tasks such as segmentation, pose estimation, 3D object detection. However the depth images procured from consumer level senors has non-negligble amounts of noise present in it, which can interfere with the downstream tasks that rely on the depth information to make a decision such as in autonomous driving. The goal of this project is to leverage data driven models such as neural networks to denoise depth images by incorporating the information present about the scene in the RGB image.</p>
 
 ## 2. State of the Art & Its Limitations  
-<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image. They were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image. A visualisation of their architecture is shown in Fig.1 /p> 
+<p align = "justify">There are two neural network models which were proposed in 2019 and 2022 respectively which are the state of the art in depth denoising. The first paper proposed by Sterzentsenko et.al [1] captures the same scene by four different sensors and then uses the fact that the noise from each sensor will be slightly different because of the difference in vantage points and uses this information to denoise the final image. They were able to achieve a MAE of 25.11mm, on a custom dataset that wasn't released to the public. The limitations of this paper are that during training it requires 4 different depth images taken from four different vantage points to denoise the image. A visualisation of their architecture is shown in Fig.1 </p> 
+<p align = "center">
 <kbhd>
 <img src = "./media/SOTA_1.png">
 </kbhd>
+</p>
 <p align = "center"> Fig 1. Visualisation of the Architecture that used multi-view supervision </p>
 <p align="justify"> The second paper proposed by Fan et.al in 2022 [5] uses depth estimation as a prior to denoising, and the authors were able to achieve a MAE of 32.8mm on the ScanNet Dataset [11]. The neural network model is trained end to end. The first stage is a depth estimator, and the second stage is a depth denoiser. The imputed depth image is then fed to the depth denoiser which predicts the residual between the original image and the imputed image. During inference, the residual is added to the original noisy depth image to render a denoised depth image. The limiation of this model is similar to the last one, which is that it requires training a depth estimator as well to achieve the task of depth denoising, this requires copious amounts of training data and GPU resources. A visualisation of the training process is shown in Fig.2 </p>   
+<p align = "center">
 <kbhd>
 <img src = "./media/SOTA_2.png">
 </kbhd>
+</p>
 <p align = "center">Fig.2 Visualisation of the Architecture that used depth estimation prior to denoising</p>
 
 ## 3. Novelty & Rationale
@@ -75,9 +79,13 @@ The project can be divided into two subparts which are:
  <ins> Creating a Noise Function </ins>
  <p align = "justify"> Time of Flight sensors suffer from noise which depends on the distance of the scene captured as well as the intensity of the scene captured. If a scene has objects further away from the sensor, the reflected signal firstly undergoes attenuation because of the distance; the signal undergoes further attenuation because of multipath interference, which can destructively interfere with the reflected LiDar Signal. 
 
+The second parameter that affects the amount of noise present in the image is intensity, because for LiDar based sensors such as Intel L515 [[9]](#9), the laser transmits a pusled signal with a wavelength of  *860nm*. Unfortunately the same wavelength is present in ambient sunlight and other light sources such as Halogen bulbs and LED's. In the presence of such sources, the sensor is unable to distinguish between the received signal and the ambient light, this causes spurious and anomalous depth measurements.  
+
+The 
 
  </p>
- <img src = "./media/Example.jpg">
+ <p align = "center"><kbhd>
+ <img src = "./media/Example.jpg"></kbhd></p>
  <ins> Training a Denoiser </ins>
 
  <img src = "./media/MyArch.png">
