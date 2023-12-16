@@ -78,11 +78,11 @@ The project can be divided into two subparts which are:
  - Training a Denoiser
 
  <ins> Creating a Noise Function </ins>
- <p align = "justify"> Time of Flight sensors suffer from noise which depends on the distance of the scene captured as well as the intensity of the scene captured. If a scene has objects further away from the sensor, the reflected signal firstly undergoes attenuation because of the distance; the signal undergoes further attenuation because of multipath interference, which can destructively interfere with the reflected LiDar Signal. 
+ <p align = "justify"> Time of Flight sensors suffer from noise which depends on the distance of the scene captured as well as the intensity of the scene captured. If a scene has objects further away from the sensor, the reflected signal firstly undergoes attenuation because of the distance; the signal undergoes further attenuation because of multipath interference, which can destructively interfere with the reflected LiDar Signal. </p>
 
-The second parameter that affects the amount of noise present in the image is intensity, because for LiDar based sensors such as Intel L515 [[9]](#9), the laser transmits a pusled signal with a wavelength of  *860nm*. Unfortunately the same wavelength is present in ambient sunlight and other light sources such as Halogen bulbs and LED's. In the presence of such sources, the sensor is unable to distinguish between the received signal and the ambient light, this causes spurious and anomalous depth measurements.  
+<p align = "justify">The second parameter that affects the amount of noise present in the image is intensity, because for LiDar based sensors such as Intel L515 [9], the laser transmits a pusled signal with a wavelength of  *860nm*. Unfortunately the same wavelength is present in ambient sunlight and other light sources such as Halogen bulbs and LED's. In the presence of such sources, the sensor is unable to distinguish between the received signal and the ambient light, this causes spurious and anomalous depth measurements.  </p>
 
-Since there was no dataset that had color-depth noise pairs, manual data collection was done where multiple colours were flashed on a screen like the one shown in Fig.3, and the associated depth readings were captured. To mitigate the impact of distance and intensity based noise, the readings were actually taken in a dark room with no other soure of light and the distance between the screen and the display unit was fixed at 0.5m. To prevent transient or spurious noise from entering the depth measurements, the depth readings were averaged over a 100 frames for each colour. Since the depth was fixed, the process to calculate the noise was quite simple; by subtracting the true depth from the measured depth, the noise distribution for each colour was found and this was then used in creating a noise based function. This procedure was done for a total of 27 colors ranging from Black to White.  </p> 
+<p align = "justify">Since there was no dataset that had color-depth noise pairs, manual data collection was done where multiple colours were flashed on a screen like the one shown in Fig.3, and the associated depth readings were captured. To mitigate the impact of distance and intensity based noise, the readings were actually taken in a dark room with no other soure of light and the distance between the screen and the display unit was fixed at 0.5m. To prevent transient or spurious noise from entering the depth measurements, the depth readings were averaged over a 100 frames for each colour. Since the depth was fixed, the process to calculate the noise was quite simple; by subtracting the true depth from the measured depth, the noise distribution for each colour was found and this was then used in creating a noise based function. This procedure was done for a total of 27 colors ranging from Black to White.  </p> 
 
 <p align = "center">
   <kbhd>
@@ -92,12 +92,22 @@ Since there was no dataset that had color-depth noise pairs, manual data collect
 </p>
 <p align = "justify">After acquiring the color-noise pairs, the next step was to create a parameterized noise function that could be applied to training the neural network. Initial attempts with using a Random Forest and K-Nearest Neighbours failed since these methods were not able to scale well during training. A Gaussian Mixture Model (GMM) was instead used since the noise distribution did resemble a gaussian noise function. The mixture model was constrained to only have 3 components to emulate the noise introduced by R, G and B. </p>   
 
- <ins> Training a Denoiser </ins>
+ <ins> Training a Denoiser </ins>  
+<p align = "justify"> The proposed architecture was heavily inspired by a denoising U-Net
+ proposed by [14] to denoise RGB images. Unlike the former model which generated the denoised image at the output, the proposed model generates the per pixel estimated noise in the image, which is then subtracted from the noisy depth image to generate the denoised depth image. This was done to help stabilize training since depth values vary from image to image and are not bounded while the estimated noise is bounded. By creating a bounded output, the risks of experiencing exploding gradients were mitgated. The minimize the risk of overfitting the model was trained with the following parameters :</p> 
 
-<p align = "justify"> The proposed architecture was heavily inspired by a denoising U-Net proposed by [[14]](#14) to denoise RGB images. Unlike the former model which generated the denoised image at the output, the proposed model generates the per pixel estimated noise in the image, which is then subtracted from the noisy depth image to generate the denoised depth image. This was done to help stabilize training since depth values vary from image to image and are not bounded while the estimated noise is bounded. By creating a bounded output, the risks of experiencing exploding gradients were mitgated. The minimize the risk of overfitting the model was trained with the following parameters :</p>
-* Dropout of 50%  
-* Initia Learning Rate of 10<sup>-4</sup> with a learning rate scheduler that reduces the learning rate by 10% at each epoch  
-* $L_{2}$ regularization applied to all weights 
+ - Dropout of 50%
+ - Learning Rate of $10^{-4}$ with a learning rate scheduler that reduces the learning rate by 10% each epoch
+ - $L_{2}$ regularization of $10^{-4}$  
+
+Additional Details about the model are as follows:
+ - Trained for a total of 10 Epochs on a Nvidia T4 GPU with 8GB of GPU RAM
+ - Number of Trainable Parameters 2.6 Million
+
+< p align = "justify"> The model was trained on the NYU Depth Dataset and evaluated on the TransCG Dataset in a zeroshot manner. During training, additional color based noise was added to the Depth channel in the RGBD image while keeping the RGB image untouched, before being passed to the model for training. This was done to inject the color based information into the model in hopes that it would learn to denoise the image by inspecting the RGB Image. As a control experiment, a model was trained with AWGN noise instead of color based noise to ascertain this. If the model truly did learn to denoise the depth image from RGB, the model trained on color based noise would outperform the model trained on AWGN noise. </p>
+
+<p align = "justify"> 3 Variations of the model were trained during the course of this project. In all three variations, the MSE loss was used to measure the difference between the denoised estimate and the true original depth. In the second variation, an additional sparsity constraint was added to the model to prevent it from overfitting by enforcing that the latent space projection of the image to be sparse.In the third variation of the model, the model received a gradient signal from a downstream tasks which for this project was a RGBD based Semantic Segmentation model. The idea was that by seeing the difference in degradation in output between the denoised and original depth image, the model would learn to denoise better. Similar to Generative Adversarial Networks, but the Adversary here was fixed for the entire training time. </p>
+
 <p align = "center"><kbhd>
  <img src = "./media/MyArch.png">
 </kbhd>
@@ -156,7 +166,7 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 <ins> Conclusion </ins>  
 
 <p align = "justify"> 
-  By using a GMM to approximate the noise function. Color based noise was added to the noisy images which were in turn used to train the U-Net which estimated the amount of noise present in the images. The estimated noised is then removed from the image to generate the denoised depth image. From the three proposed models which involved training on a MSE loss and other additional constraints it can be seen from Table 1 that the model trained on MSE with an additional constraint of the sparsity on the latent space performed the best and even outperformed the SOTA [[1]](#1) on the RMSE metric. Furthermore the same model was able to successfully denoise images in a zero-shot manner when evaluated on the TransCG dataset [[12]](#12), highlighting that the model was device agnostic since the NYU depth dataset was collected on a Kinect Sensor while the TransCG dataset was collected on a Intel L515 [[10]](#10). 
+  By using a GMM to approximate the noise function. Color based noise was added to the noisy images which were in turn used to train the U-Net which estimated the amount of noise present in the images. The estimated noised is then removed from the image to generate the denoised depth image. From the three proposed models which involved training on a MSE loss and other additional constraints it can be seen from Table 1 that the model trained on MSE with an additional constraint of the sparsity on the latent space performed the best and even outperformed the SOTA [1] on the RMSE metric. Furthermore the same model was able to successfully denoise images in a zero-shot manner when evaluated on the TransCG dataset [12], highlighting that the model was device agnostic since the NYU depth dataset was collected on a Kinect Sensor while the TransCG dataset was collected on a Intel L515 [10]. 
 </p>
 
 
