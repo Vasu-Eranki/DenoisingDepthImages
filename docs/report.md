@@ -184,9 +184,11 @@ Proposed Architecture (UNet) |  12.8ms - On a T4 GPU (8GB of RAM)
 
 <ins>Analysis</ins>
 
-<p align = "justify"> From Table 1, it can be seen that 2 of the 3 proposed models were able to surpass the SOTA model [1] on the NYU Depth Dataset on the RMSE metric by 6mm, which highlights the efficacy of leveraging the information present inside the color image, however it should be highlighted that the proposed models were trained on the MSE metric while the SOTA model wasn't, this is further evident from the average performance of the model on the MAE metric. 
+<p align = "justify"> From Table 1, it can be seen that 2 of the 3 proposed models were able to surpass the SOTA model [1] on the NYU Depth Dataset on the RMSE metric by 6mm, which highlights the efficacy of leveraging the information present inside the color image, however it should be highlighted that the proposed models were trained on the MSE metric while the SOTA model wasn't, this is further evident from the average performance of the proposed models on the MAE metric. A great MSE performance and a lukewarm MAE performance might be indicative that the denoised images are smoother than needed and high frequency information such as edges are getting washed away. </p>
 
+<p align = "justify"> The second point to be made is in comparison to the model trained solely on AWGN noise. From Table 1, what is seen is that the proposed models outperform the model trained on AWGN highlighting that the CNN was able to leverage the color based information to further denoise the depth image. When ev
 
+<p align="justify"> Besides the neural network based methods described above, in the realm of classical computer vision based methods. The bilateral filter is able to remove some of the noise while preserving the shapes and features, whilst the anisotropic diffusion based filter pretty much smoothens out the entire image, removing most medium to high frequency features and leaving the low frequency features in place, which explains it poor performance on both datasets while the bilateral filter has comparable performance to neural network based models. 
 
 <ins> Conclusion </ins>  
 
