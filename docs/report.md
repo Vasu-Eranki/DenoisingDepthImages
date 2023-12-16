@@ -100,7 +100,32 @@ Since there was no dataset that had color-depth noise pairs, manual data collect
 
 # 4. Evaluation and Results
 
+<ins> Color Noise </ins>
+<p align = "middle">
+ <kbhd>
+<img src = "./media/Figure_1.png" width = 300>
+<img src = "./media/PDF.png" width = 300>
+<img src = "./media/CDF.png" width = 300>
+ </kbhd>
+Fig 5: Parameterized Noise Function based on Color 
+</p>
+
+<ins> Denoising Results </ins>
+
+<p align = "center">
+ <kbhd>
+<img src = "./media/nyu_1.png">
+<img src = "./media/nyu_2.png">
+<img src = "./media/transcg_1.png">
+<img src = "./media/transcg_2.png">
+</kbhd>
+ Fig.6 Results for each algorithm against the NYU Depth Dataset and TransCG Dataset
+</p>
+
+
+
 <p align = "center"> Table 1: Results of Various Algorithms against two datasets on MAE and RMSE Metrics </p>
+
  Dataset |Metric| Bilateral Filter | SOTA [1] | MSE w AWGN Noise | MSE | MSE w Group Sparsity  | MSE w downstream tasks
 ---| --- | --- | --- | ---| ---| ---| ---
 NYU Depth Dataset |  MAE |  16.41mm|  44.34mm|  <b>8.58mm</b>|  16.74mm|  11.75mm|  10.01mm| 15.31mm
@@ -109,6 +134,7 @@ TransCG Dataset |  MAE |  41.03mm| 49.24mm| <b>11.02mm</b>| 31.01mm| 35.99mm| 16
 TransCG Dataset |  RMSE|  84.90mm| 169.32mm| 37.78mm| 42.12mm|  46.30mm| <b>32.45mm</b>| 49.05mm| 
 
 <p align ="left">Table 2: Time taken by each denoising algorithm to process one depth image </p>
+
 Algorithm |  Inference Time 
 ---|  ---
 Bilateral Filter |  22ms 
