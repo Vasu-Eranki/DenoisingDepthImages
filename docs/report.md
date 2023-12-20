@@ -160,7 +160,7 @@ Fig 5: Parameterized Noise Function based on Color
 
 <p align = "center"> Table 1: Results of Various Algorithms against two datasets on MAE and RMSE Metrics </p>
 
- Dataset |Metric| Bilateral Filter | SOTA [1] | MSE w AWGN Noise | MSE | MSE w Group Sparsity  | MSE w downstream tasks
+ Dataset |Metric| Bilateral Filter |Anisotropic Diffusio | SOTA [1] | MSE w AWGN Noise | MSE | MSE w Group Sparsity  | MSE w downstream tasks
 ---| --- | --- | --- | ---| ---| ---| ---
 NYU Depth Dataset |  MAE |  16.41mm|  44.34mm|  <b>8.58mm</b>|  16.74mm|  11.75mm|  10.01mm| 15.31mm
 NYU Depth Dataset |  RMSE | 37.62mm| 196.89mm| 30.15mm| 36.30mm| <b>30.05mm</b>| <b>24.73mm</b>| 34.21mm| 
